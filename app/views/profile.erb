@@ -1,0 +1,33 @@
+
+<div class="container">
+  <h1>Profile</h1>
+
+  <p><%= @username %> </p>
+  <p><%= @password %> </p>
+    <p><%= @current_user %> </p>
+
+  <a href="/logout"> Log Out </a>
+
+  <!-- results of generate -->
+
+  <h2>Generate!</h2>
+
+  <!--Form for short URL-->
+  <form action = "/new" method="post" >
+    URL: <input type="text" name="original">
+    <input type = "submit" value="Submit">
+  </form>
+
+
+  <!-- all results that belong to this user -->
+
+  <ul>
+   <% Url.where(:user_id => @current_user).each do |url| %>
+      <li><a href="/<%= url.short %>"> <%= url.short %></a></li>
+      <li>Count: <%= url.click_count %></li> <br>
+    <% end %>
+  </ul>
+
+<!--    <p><%= @username %> </p> -->
+
+</div>
